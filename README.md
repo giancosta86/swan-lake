@@ -24,7 +24,11 @@ The public API entirely resides in the root package index, so one shouldn't refe
 
 - `HasEquals` is an interface having an `equals(other): boolean` method, where `other` belongs to the same type or a structurally compatible one
 
-- `optionalEquals<T extends HasEquals>(left: T | undefined, right: T | undefined): boolean`. This function returns `true` if:
+- `None` is declared as `undefined | null`
+
+- `Optional` is a namespace including:
+
+  - `equals<T extends HasEquals>(left: T | None, right: T | None): boolean`. This function returns `true` if:
 
   - `left` and `right` are both `undefined`
 

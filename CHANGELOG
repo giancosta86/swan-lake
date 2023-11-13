@@ -1,0 +1,3 @@
+## Version 2
+
+- `optionalEquals` moved to `Option::equals` and now supporting `null` values
