@@ -37,3 +37,5 @@ The public API entirely resides in the root package index, so one shouldn't refe
     - `left` and `right` are both defined **and** `left.equals(right)` returns `true`
 
     **Please, note**: this function does **not** check whether the two operands belong to the same type - according to TypeScript's structural equality; should you have such specific requirement, you'll need to perform a dedicated check.
+
+- `ExpressiveUrl::create` - creates a URL from a string - throwing a descriptive error on failure
