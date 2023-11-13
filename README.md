@@ -26,12 +26,14 @@ The public API entirely resides in the root package index, so one shouldn't refe
 
 - `None` is declared as `undefined | null`
 
-- `Optional` is a namespace including:
+- `Option` is a namespace including:
 
-  - `equals<T extends HasEquals>(left: T | None, right: T | None): boolean`. This function returns `true` if:
+  - `map` - returns the source value itself should it be `null` or `undefined`, but applies the given mapper otherwise
 
-  - `left` and `right` are both `undefined`
+  - `equals` - this function returns `true` if:
 
-  - `left` and `right` are both defined **and** `left.equals(right)` returns `true`
+    - both `left` and `right` are either `undefined` or `null`
 
-  **Please, note**: this function does **not** check whether the two operands belong to the same type - according to TypeScript's structural equality; should you have such specific requirement, you'll need to perform a dedicated check.
+    - `left` and `right` are both defined **and** `left.equals(right)` returns `true`
+
+    **Please, note**: this function does **not** check whether the two operands belong to the same type - according to TypeScript's structural equality; should you have such specific requirement, you'll need to perform a dedicated check.
