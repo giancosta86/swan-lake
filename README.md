@@ -26,9 +26,9 @@ The public API entirely resides in the root package index, so one shouldn't refe
 
 - `None` is declared as `undefined | null`
 
-- `Option` is a namespace including:
+- `Optional` is a namespace including:
 
-  - `map` - returns the source value itself should it be `null` or `undefined`, but applies the given mapper otherwise
+  - `map` - returns `undefined` if the input value is `null` or `undefined`, but applies the given mapper otherwise
 
   - `equals` - this function returns `true` if:
 

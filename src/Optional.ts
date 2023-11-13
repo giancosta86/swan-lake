@@ -6,17 +6,15 @@ export interface HasEquals {
   equals(other: ThisType<this>): boolean;
 }
 
-export namespace Option {
+export namespace Optional {
   export function map<TSource, TDest>(
     source: TSource | None,
     mapper: Mapper<TSource, TDest>
-  ): TDest | None {
+  ): TDest | undefined {
     switch (source) {
       case undefined:
-        return undefined;
-
       case null:
-        return null;
+        return undefined;
 
       default:
         return mapper(source);

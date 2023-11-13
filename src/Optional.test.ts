@@ -1,26 +1,26 @@
-import { Option } from "./Option";
+import { Optional } from "./Optional";
 
-describe("Option", () => {
+describe("Optional", () => {
   describe("mapping", () => {
     describe("when the source is undefined", () => {
       it("should return undefined", () => {
-        const mapping = Option.map<number, number>(undefined, x => x + 90);
+        const mapping = Optional.map<number, number>(undefined, x => x + 90);
 
         expect(mapping).toBeUndefined();
       });
     });
 
     describe("when the source is null", () => {
-      it("should return null", () => {
-        const mapping = Option.map<number, number>(null, x => x + 90);
+      it("should return undefined", () => {
+        const mapping = Optional.map<number, number>(null, x => x + 90);
 
-        expect(mapping).toBeNull();
+        expect(mapping).toBeUndefined();
       });
     });
 
     describe("when the source is neither undefined nor null", () => {
       it("should apply the mapping", () => {
-        const mapping = Option.map<number, number>(2, x => x + 90);
+        const mapping = Optional.map<number, number>(2, x => x + 90);
 
         expect(mapping).toBe(92);
       });
@@ -65,7 +65,7 @@ describe("Option", () => {
           describe("when the operands are equal", () => {
             it("should return true", () => {
               expect(
-                Option.equals(factory("Omicron"), factory("Omicron"))
+                Optional.equals(factory("Omicron"), factory("Omicron"))
               ).toBeTrue();
             });
           });
@@ -73,7 +73,7 @@ describe("Option", () => {
           describe("when the operands are different", () => {
             it("should return false", () => {
               expect(
-                Option.equals(factory("Alpha"), factory("Beta"))
+                Optional.equals(factory("Alpha"), factory("Beta"))
               ).toBeFalse();
             });
           });
@@ -84,14 +84,16 @@ describe("Option", () => {
           missingType => {
             describe(`when only the left operand is ${missingType}`, () => {
               it("should return false", () => {
-                expect(Option.equals(missingType, factory("Beta"))).toBeFalse();
+                expect(
+                  Optional.equals(missingType, factory("Beta"))
+                ).toBeFalse();
               });
             });
 
             describe(`when only the right operand is ${missingType}`, () => {
               it("should return false", () => {
                 expect(
-                  Option.equals(factory("Alpha"), missingType)
+                  Optional.equals(factory("Alpha"), missingType)
                 ).toBeFalse();
               });
             });
@@ -99,7 +101,7 @@ describe("Option", () => {
             describe(`when both operands are ${missingType}`, () => {
               it("should return true", () => {
                 expect(
-                  Option.equals(
+                  Optional.equals(
                     missingType as unknown as Bear,
                     missingType as unknown as Bear
                   )
@@ -114,7 +116,7 @@ describe("Option", () => {
     describe(`when one operand is null and the other undefined`, () => {
       it("should return true", () => {
         expect(
-          Option.equals(null as unknown as Bear, undefined as unknown as Bear)
+          Optional.equals(null as unknown as Bear, undefined as unknown as Bear)
         ).toBeTrue();
       });
     });
@@ -125,7 +127,7 @@ describe("Option", () => {
           const name = "Yogi";
           const bear = new Bear(name);
           const fish = Fish.create(name);
-          const equality = Option.equals(bear, fish);
+          const equality = Optional.equals(bear, fish);
 
           expect(equality).toBeTrue();
         });

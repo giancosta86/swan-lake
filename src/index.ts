@@ -2,4 +2,4 @@ export * from "./AnyClass";
 
 export * from "./ImmediateOrPromise";
 
-export * from "./Option";
+export * from "./Optional";
